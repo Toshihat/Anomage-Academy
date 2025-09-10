@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anoma Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Anoma Quiz</h1>
+    <div id="quiz">
+      <button id="startBtn">Mulai Kuis</button>
+    </div>
+  </div>
+
+<script>
+let questionBank = [];
+let quizData = [];
+let currentQ = 0;
+let score = 0;
+
+async function loadQuestions() {
+  const res = await fetch("questions.json");
+  questionBank = await res.json();
+  startQuiz();
+}
+
+document.getElementById("startBtn").onclick = loadQuestions;
+
+function shuffle(array){
+  let currentIndex = array.length, randomIndex;
+  while(currentIndex!=0){
+    randomIndex = Math.floor(Math.random()*currentIndex);
+    currentIndex--;
+    [array[currentIndex],array[randomIndex]]=[array[randomIndex],array[currentIndex]];
+  }
+  return array;
+}
+
+function startQuiz(){
+  score = 0;
+  currentQ = 0;
+  quizData = shuffle([...questionBank]).slice(0,5);
+  showQuestion();
+}
+
+function showQuestion(){
+  if(currentQ >= quizData.length){ endQuiz(); return; }
+  const q = quizData[currentQ];
+  const opts = shuffle([...q.options]);
+  quizEl.innerHTML = `
+    <div class="question-box">
+      <div class="question">Q${currentQ+1}: ${q.question}</div>
+      <div class="options">
+        ${opts.map(o=>`<button onclick="checkAnswer(this,'${q.answer}')">${o}</button>`).join("")}
+      </div>
+      <button id="nextBtn" disabled>Lanjut</button>
+    </div>
+  `;
+  document.getElementById("nextBtn").onclick = ()=>{ currentQ++; showQuestion(); };
+}
+
+function checkAnswer(btn, correct){
+  const buttons = btn.parentElement.querySelectorAll("button");
+  buttons.forEach(b=>{
+    b.disabled = true;
+    if(b.textContent===correct) b.classList.add("correct");
+  });
+  if(btn.textContent===correct){ score++; }
+  else { btn.classList.add("wrong"); }
+  document.getElementById("nextBtn").disabled=false;
+}
+
+function endQuiz(){
+  quizEl.innerHTML = `
+    <div id="scoreBox">
+      <p>Skor kamu: ${score} / ${quizData.length}</p>
+      <button onclick="startQuiz()">Main Lagi</button>
+    </div>
+  `;
+}
+
+const quizEl = document.getElementById("quiz");
+</script>
+</body>
+</html>

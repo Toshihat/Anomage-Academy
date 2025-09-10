@@ -1,4 +1,4 @@
-# Anomage-Academy
+# Academy Anoma
 
 Anoma Academy is an interactive, browser-based quiz game designed to test your knowledge of the Anoma ecosystem, Intents, and related projects such as Shrimpers NFT, HeyElsa AI, Tetric, Anomapay, and SullySwap.
 

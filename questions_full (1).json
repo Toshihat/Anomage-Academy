@@ -1,0 +1,202 @@
+[
+  {
+    "question": "What is the core architectural paradigm of the Anoma network that allows users to declare their desired outcome without specifying the exact execution path?",
+    "options": [
+      "Proof-of-Stake",
+      "Rollup-Centric",
+      "Intent-Centric",
+      "Account Abstraction"
+    ],
+    "answer": "Intent-Centric"
+  },
+  {
+    "question": "In an intent-based architecture, what is the primary role of a 'Solver'?",
+    "options": [
+      "To provide user wallet storage.",
+      "To develop the user interface for applications.",
+      "To find and execute the optimal path to fulfill a user's intent.",
+      "To act as a blockchain validator."
+    ],
+    "answer": "To find and execute the optimal path to fulfill a user's intent."
+  },
+  {
+    "question": "HeyElsa AI is best described as:",
+    "options": [
+      "A decentralized exchange on the Anoma network.",
+      "An intent-based AI agent that executes on-chain actions based on natural language commands.",
+      "A privacy-preserving payment protocol.",
+      "A cross-chain bridge service."
+    ],
+    "answer": "An intent-based AI agent that executes on-chain actions based on natural language commands."
+  },
+  {
+    "question": "The primary function of Anomapay within the ecosystem is likely to be:",
+    "options": [
+      "NFT minting and trading.",
+      "A private, intent-based payment and transaction service.",
+      "Providing decentralized physical infrastructure networks (DePIN).",
+      "Off-chain computation for oracles."
+    ],
+    "answer": "A private, intent-based payment and transaction service."
+  },
+  {
+    "question": "Acurast is a project that enables:",
+    "options": [
+      "Private stablecoin transactions.",
+      "Trustless off-chain computation using smartphones as a universal compute layer.",
+      "Intent-based leverage trading.",
+      "Cross-chain intent matching."
+    ],
+    "answer": "Trustless off-chain computation using smartphones as a universal compute layer."
+  },
+  {
+    "question": "What key problem does the 'intent-centric' paradigm primarily aim to solve?",
+    "options": [
+      "Low blockchain transaction throughput.",
+      "User complexity and the need for deep technical knowledge to interact with DeFi.",
+      "The high cost of data storage on-chain.",
+      "Centralization of mining power."
+    ],
+    "answer": "User complexity and the need for deep technical knowledge to interact with DeFi."
+  },
+  {
+    "question": "SullySwap is an example of a DEX that leverages Anoma's technology to offer:",
+    "options": [
+      "Multi-chain intent-based swapping with optimal price discovery.",
+      "NFT-backed loans.",
+      "Social media integration.",
+      "Centralized limit order books."
+    ],
+    "answer": "Multi-chain intent-based swapping with optimal price discovery."
+  },
+  {
+    "question": "In the context of Anoma, an 'intent' can be most simply defined as:",
+    "options": [
+      "A signed blockchain transaction.",
+      "A smart contract function call.",
+      "A signed declaration of a user's desired state change or outcome.",
+      "A validator's vote on a new block."
+    ],
+    "answer": "A signed declaration of a user's desired state change or outcome."
+  },
+  {
+    "question": "Shrimpers-NFT is likely a project that:",
+    "options": [
+      "Provides oracle data for intent solvers.",
+      "Offers NFT collections or utilities within the Anoma ecosystem.",
+      "Acts as a central counter-party for trades.",
+      "Manages decentralized storage for the network."
+    ],
+    "answer": "Offers NFT collections or utilities within the Anoma ecosystem."
+  },
+  {
+    "question": "Spicenet is a key component of the Anoma roadmap. It refers to:",
+    "options": [
+      "A privacy-focused stablecoin.",
+      "The first testnet implementation of the Anoma protocol.",
+      "The governance token for the HeyElsa AI agent.",
+      "A hardware wallet integration."
+    ],
+    "answer": "The first testnet implementation of the Anoma protocol."
+  },
+  {
+    "question": "Which project exemplifies the use of the Anoma stack for specialized DeFi activities like leverage trading?",
+    "options": [
+      "Acurast",
+      "Anomapay",
+      "Tetric",
+      "Shrimpers-NFT"
+    ],
+    "answer": "Tetric"
+  },
+  {
+    "question": "The ability for a user to express an intent like 'Buy X amount of asset Y if its price falls below Z' is enabled by:",
+    "options": [
+      "Sharding",
+      "Intent-based architectures and solver networks.",
+      "Zero-knowledge proofs alone.",
+      "Proof-of-Work consensus."
+    ],
+    "answer": "Intent-based architectures and solver networks."
+  },
+  {
+    "question": "Acurast's use of smartphones for computation is innovative because it:",
+    "options": [
+      "Leverages underutilized hardware to create a decentralized compute market, avoiding centralized cloud providers.",
+      "Provides the fastest possible processing speeds.",
+      "Is managed by a single corporate entity.",
+      "Requires users to keep their apps open at all times."
+    ],
+    "answer": "Leverages underutilized hardware to create a decentralized compute market, avoiding centralized cloud providers."
+  },
+  {
+    "question": "For a solver to successfully fulfill a user's intent, what must the user provide?",
+    "options": [
+      "Their private key.",
+      "A signed intent, which contains constraints but not execution details.",
+      "The full gas fees upfront.",
+      "The specific blockchain addresses to use."
+    ],
+    "answer": "A signed intent, which contains constraints but not execution details."
+  },
+  {
+    "question": "The concept of 'intent' is powerful for cross-chain interactions because it:",
+    "options": [
+      "Requires a new standardized blockchain.",
+      "Allows solvers to find the best path across multiple chains and liquidity sources automatically.",
+      "Forces all activity onto a single layer-1.",
+      "Eliminates the need for bridges."
+    ],
+    "answer": "Allows solvers to find the best path across multiple chains and liquidity sources automatically."
+  },
+  {
+    "question": "Which project is most directly focused on abstracting away complexity for users by allowing natural language commands?",
+    "options": [
+      "Tetric",
+      "SullySwap",
+      "HeyElsa AI",
+      "Anomapay"
+    ],
+    "answer": "HeyElsa AI"
+  },
+  {
+    "question": "A key benefit of the intent-centric paradigm for users is:",
+    "options": [
+      "Guaranteed absolute maximum profit on every trade.",
+      "Improved user experience and reduced cognitive load.",
+      "Complete anonymity for all transactions.",
+      "Elimination of all transaction fees."
+    ],
+    "answer": "Improved user experience and reduced cognitive load."
+  },
+  {
+    "question": "In a typical transaction, a user specifies how to do something. In an intent, a user specifies:",
+    "options": [
+      "Who should do it.",
+      "When it should be done.",
+      "What the desired outcome is.",
+      "Where it should be executed."
+    ],
+    "answer": "What the desired outcome is."
+  },
+  {
+    "question": "Tetric, as a leverage trading platform built on Anoma, would likely use intents to allow users to:",
+    "options": [
+      "Manually manage their liquidation prices.",
+      "Declare complex trading strategies (e.g., 'Open a long position with 5x leverage if ETH hits $3,500') without manual execution.",
+      "Post collateral on multiple chains simultaneously.",
+      "Trade without any collateral."
+    ],
+    "answer": "Declare complex trading strategies (e.g., 'Open a long position with 5x leverage if ETH hits $3,500') without manual execution."
+  },
+  {
+    "question": "Anomapay's focus on privacy likely stems from:",
+    "options": [
+      "Anoma's core integration of zero-knowledge cryptography for shielding transaction details.",
+      "The use of a centralized mixer.",
+      "Running on a private blockchain.",
+      "Not recording any transactions on-chain."
+    ],
+    "answer": "Anoma's core integration of zero-knowledge cryptography for shielding transaction details."
+  }
+]

@@ -12,6 +12,9 @@
     <div id="quiz">
       <button id="startBtn">Mulai Kuis</button>
     </div>
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
   </div>
 
 <script>
@@ -42,6 +45,7 @@ function startQuiz(){
   score = 0;
   currentQ = 0;
   quizData = shuffle([...questionBank]).slice(0,5);
+  updateProgress();
   showQuestion();
 }
 
@@ -50,7 +54,7 @@ function showQuestion(){
   const q = quizData[currentQ];
   const opts = shuffle([...q.options]);
   quizEl.innerHTML = `
-    <div class="question-box">
+    <div class="question-box fade-in">
       <div class="question">Q${currentQ+1}: ${q.question}</div>
       <div class="options">
         ${opts.map(o=>`<button onclick="checkAnswer(this,'${q.answer}')">${o}</button>`).join("")}
@@ -58,7 +62,11 @@ function showQuestion(){
       <button id="nextBtn" disabled>Lanjut</button>
     </div>
   `;
-  document.getElementById("nextBtn").onclick = ()=>{ currentQ++; showQuestion(); };
+  document.getElementById("nextBtn").onclick = ()=>{ 
+    currentQ++; 
+    updateProgress();
+    showQuestion(); 
+  };
 }
 
 function checkAnswer(btn, correct){
@@ -67,18 +75,30 @@ function checkAnswer(btn, correct){
     b.disabled = true;
     if(b.textContent===correct) b.classList.add("correct");
   });
-  if(btn.textContent===correct){ score++; }
-  else { btn.classList.add("wrong"); }
+  if(btn.textContent===correct){ 
+    score++; 
+    btn.innerHTML += " ✅";
+  }
+  else { 
+    btn.classList.add("wrong"); 
+    btn.innerHTML += " ❌";
+  }
   document.getElementById("nextBtn").disabled=false;
 }
 
 function endQuiz(){
   quizEl.innerHTML = `
-    <div id="scoreBox">
+    <div id="scoreBox" class="fade-in">
       <p>Skor kamu: ${score} / ${quizData.length}</p>
       <button onclick="startQuiz()">Main Lagi</button>
     </div>
   `;
+  document.getElementById("progressBar").style.width = `100%`;
+}
+
+function updateProgress(){
+  const progress = ((currentQ)/quizData.length)*100;
+  document.getElementById("progressBar").style.width = `${progress}%`;
 }
 
 const quizEl = document.getElementById("quiz");

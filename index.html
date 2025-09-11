@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Anoma Quiz</title>
+  <title>Anoma Quiz - Kahoot Style</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -22,6 +22,8 @@ let questionBank = [];
 let quizData = [];
 let currentQ = 0;
 let score = 0;
+let timer;
+let timeLeft = 15;
 
 async function loadQuestions() {
   const res = await fetch("questions.json");
@@ -51,32 +53,49 @@ function startQuiz(){
 
 function showQuestion(){
   if(currentQ >= quizData.length){ endQuiz(); return; }
+  clearInterval(timer);
+  timeLeft = 15;
+
   const q = quizData[currentQ];
   const opts = shuffle([...q.options]);
+
   quizEl.innerHTML = `
     <div class="question-box fade-in">
       <div class="question">Q${currentQ+1}: ${q.question}</div>
+      <div id="timer">⏱ ${timeLeft}</div>
       <div class="options">
-        ${opts.map(o=>`<button onclick="checkAnswer(this,'${q.answer}')">${o}</button>`).join("")}
+        ${opts.map((o,i)=>`<button class="option opt${i}" onclick="checkAnswer(this,'${q.answer}')">${o}</button>`).join("")}
       </div>
       <button id="nextBtn" disabled>Lanjut</button>
     </div>
   `;
+
   document.getElementById("nextBtn").onclick = ()=>{ 
     currentQ++; 
     updateProgress();
     showQuestion(); 
   };
+
+  timer = setInterval(()=>{
+    timeLeft--;
+    document.getElementById("timer").textContent = `⏱ ${timeLeft}`;
+    if(timeLeft<=0){
+      clearInterval(timer);
+      document.getElementById("nextBtn").disabled = false;
+      document.querySelectorAll(".option").forEach(b=>b.disabled=true);
+    }
+  },1000);
 }
 
 function checkAnswer(btn, correct){
+  clearInterval(timer);
   const buttons = btn.parentElement.querySelectorAll("button");
   buttons.forEach(b=>{
     b.disabled = true;
     if(b.textContent===correct) b.classList.add("correct");
   });
   if(btn.textContent===correct){ 
-    score++; 
+    score += timeLeft; // lebih cepat = skor lebih tinggi
     btn.innerHTML += " ✅";
   }
   else { 
@@ -89,7 +108,8 @@ function checkAnswer(btn, correct){
 function endQuiz(){
   quizEl.innerHTML = `
     <div id="scoreBox" class="fade-in">
-      <p>Skor kamu: ${score} / ${quizData.length}</p>
+      <h2>🎉 Kuis Selesai!</h2>
+      <p>Skor kamu: ${score}</p>
       <button onclick="startQuiz()">Main Lagi</button>
     </div>
   `;

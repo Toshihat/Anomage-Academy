@@ -17,10 +17,10 @@
     </div>
   </div>
 
-<!-- Suara -->
-<audio id="soundCorrect" src="sounds/correct.mp3"></audio>
-<audio id="soundWrong" src="sounds/wrong.mp3"></audio>
-<audio id="soundTimeout" src="sounds/timeout.mp3"></audio>
+  <!-- Suara -->
+  <audio id="soundCorrect" src="sounds/correct.mp3"></audio>
+  <audio id="soundWrong" src="sounds/wrong.mp3"></audio>
+  <audio id="soundTimeout" src="sounds/timeout.mp3"></audio>
 
 <script>
 let questionBank = [];
@@ -71,7 +71,7 @@ function showQuestion(){
       <div class="question">Q${currentQ+1}: ${q.question}</div>
       <div id="timer">⏱ ${timeLeft}</div>
       <div class="options">
-        ${opts.map((o,i)=>`<button class="option opt${i}" onclick="checkAnswer(this,'${q.answer}')">${o}</button>`).join("")}
+        ${opts.map((o,i)=>`<button class="option opt${i}" data-answer="${q.answer}" onclick="checkAnswer(this)">${o}</button>`).join("")}
       </div>
       <button id="nextBtn" disabled>Lanjut</button>
     </div>
@@ -95,20 +95,20 @@ function showQuestion(){
   },1000);
 }
 
-function checkAnswer(btn, correct){
+function checkAnswer(btn){
   clearInterval(timer);
+  const correct = btn.getAttribute("data-answer").trim().toLowerCase();
   const userAnswer = btn.textContent.trim().toLowerCase();
-  const rightAnswer = correct.trim().toLowerCase();
 
   const buttons = btn.parentElement.querySelectorAll("button");
   buttons.forEach(b=>{
     b.disabled = true;
-    if(b.textContent.trim().toLowerCase() === rightAnswer) {
+    if(b.textContent.trim().toLowerCase() === correct) {
       b.classList.add("correct");
     }
   });
 
-  if(userAnswer === rightAnswer){ 
+  if(userAnswer === correct){ 
     score += timeLeft; // lebih cepat = skor lebih tinggi
     correctAnswers++;
     btn.innerHTML += " ✅";

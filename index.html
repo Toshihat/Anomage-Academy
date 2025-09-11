@@ -17,6 +17,11 @@
     </div>
   </div>
 
+<!-- Suara -->
+<audio id="soundCorrect" src="sounds/correct.mp3"></audio>
+<audio id="soundWrong" src="sounds/wrong.mp3"></audio>
+<audio id="soundTimeout" src="sounds/timeout.mp3"></audio>
+
 <script>
 let questionBank = [];
 let quizData = [];
@@ -24,6 +29,7 @@ let currentQ = 0;
 let score = 0;
 let timer;
 let timeLeft = 15;
+let correctAnswers = 0;
 
 async function loadQuestions() {
   const res = await fetch("questions.json");
@@ -45,6 +51,7 @@ function shuffle(array){
 
 function startQuiz(){
   score = 0;
+  correctAnswers = 0;
   currentQ = 0;
   quizData = shuffle([...questionBank]).slice(0,5);
   updateProgress();
@@ -81,6 +88,7 @@ function showQuestion(){
     document.getElementById("timer").textContent = `⏱ ${timeLeft}`;
     if(timeLeft<=0){
       clearInterval(timer);
+      document.getElementById("soundTimeout").play();
       document.getElementById("nextBtn").disabled = false;
       document.querySelectorAll(".option").forEach(b=>b.disabled=true);
     }
@@ -89,27 +97,46 @@ function showQuestion(){
 
 function checkAnswer(btn, correct){
   clearInterval(timer);
+  const userAnswer = btn.textContent.trim().toLowerCase();
+  const rightAnswer = correct.trim().toLowerCase();
+
   const buttons = btn.parentElement.querySelectorAll("button");
   buttons.forEach(b=>{
     b.disabled = true;
-    if(b.textContent===correct) b.classList.add("correct");
+    if(b.textContent.trim().toLowerCase() === rightAnswer) {
+      b.classList.add("correct");
+    }
   });
-  if(btn.textContent===correct){ 
+
+  if(userAnswer === rightAnswer){ 
     score += timeLeft; // lebih cepat = skor lebih tinggi
+    correctAnswers++;
     btn.innerHTML += " ✅";
+    document.getElementById("soundCorrect").play();
   }
   else { 
     btn.classList.add("wrong"); 
     btn.innerHTML += " ❌";
+    document.getElementById("soundWrong").play();
   }
   document.getElementById("nextBtn").disabled=false;
 }
 
 function endQuiz(){
+  let badge = "";
+  if(correctAnswers === quizData.length){
+    badge = `
+      <div class="badge">
+        🏅 Perfect Score! Kamu berhasil menjawab semua benar 🎉
+      </div>
+    `;
+  }
+
   quizEl.innerHTML = `
     <div id="scoreBox" class="fade-in">
       <h2>🎉 Kuis Selesai!</h2>
       <p>Skor kamu: ${score}</p>
+      ${badge}
       <button onclick="startQuiz()">Main Lagi</button>
     </div>
   `;
@@ -125,4 +152,3 @@ const quizEl = document.getElementById("quiz");
 </script>
 </body>
 </html>
-

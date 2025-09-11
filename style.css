@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(120deg,#fdfbfb,#ebedee);
   display: flex;
   justify-content: center;
@@ -14,7 +14,7 @@ body {
   border-radius: 15px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   width: 90%;
-  max-width: 500px;
+  max-width: 600px;
   text-align: center;
   position: relative;
 }
@@ -22,49 +22,49 @@ body {
 h1 {
   margin-bottom: 15px;
   color: #333;
-  letter-spacing: 1px;
 }
 
 button {
-  padding: 10px 15px;
-  margin: 5px 0;
+  padding: 15px;
+  margin: 8px 0;
   border: none;
-  border-radius: 8px;
-  background: #1e90ff;
+  border-radius: 10px;
   color: white;
   cursor: pointer;
-  font-size: 16px;
-  transition: all 0.2s ease;
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 button:hover:not(:disabled) {
-  transform: translateY(-3px);
-  background: #0d6efd;
+  transform: scale(1.05);
 }
 
 button:disabled {
-  background: #aaa;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
-button.correct {
-  background: #28a745;
-  color: #fff;
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 20px 0;
 }
 
-button.wrong {
-  background: #dc3545;
-  color: #fff;
-}
+/* Warna ala Kahoot */
+.opt0 { background: #e74c3c; }   /* merah */
+.opt1 { background: #3498db; }   /* biru */
+.opt2 { background: #f1c40f; }   /* kuning */
+.opt3 { background: #2ecc71; }   /* hijau */
 
-.question-box {
-  margin-top: 20px;
-}
+button.correct { background: #28a745 !important; }
+button.wrong { background: #dc3545 !important; }
 
-.options button {
-  display: block;
-  width: 100%;
-  margin: 5px 0;
+#timer {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 .fade-in {

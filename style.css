@@ -1,95 +1,172 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(120deg,#fdfbfb,#ebedee);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* Reset dasar */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
-  background: #fff;
-  padding: 25px 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-  width: 90%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 700px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   text-align: center;
-  position: relative;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
 h1 {
-  margin-bottom: 15px;
-  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 
-button {
-  padding: 15px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+.question-box {
+  margin-top: 1.5rem;
 }
 
-button:hover:not(:disabled) {
-  transform: scale(1.05);
+.question {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+#timer {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #ffeb3b;
 }
 
 .options {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 20px 0;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* Warna ala Kahoot */
-.opt0 { background: #e74c3c; }   /* merah */
-.opt1 { background: #3498db; }   /* biru */
-.opt2 { background: #f1c40f; }   /* kuning */
-.opt3 { background: #2ecc71; }   /* hijau */
-
-button.correct { background: #28a745 !important; }
-button.wrong { background: #dc3545 !important; }
-
-#timer {
-  font-size: 20px;
+.option {
+  padding: 1rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
   font-weight: bold;
-  margin: 10px 0;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.3s;
+  color: #fff;
 }
 
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
+/* Warna gaya Kahoot */
+.opt0 { background: #e74c3c; } /* merah */
+.opt1 { background: #3498db; } /* biru */
+.opt2 { background: #2ecc71; } /* hijau */
+.opt3 { background: #f1c40f; } /* kuning */
+
+.option:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
-@keyframes fadeIn {
-  from {opacity:0; transform:translateY(10px);}
-  to {opacity:1; transform:translateY(0);}
+.correct {
+  background: #27ae60 !important;
+  animation: pop 0.3s ease-in-out;
+}
+
+.wrong {
+  background: #c0392b !important;
+  animation: shake 0.4s ease-in-out;
+}
+
+#nextBtn {
+  background: #9b59b6;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#nextBtn:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+#nextBtn:hover:enabled {
+  background: #8e44ad;
+}
+
+#scoreBox {
+  margin-top: 2rem;
+}
+
+#scoreBox h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+#scoreBox p {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.badge {
+  background: gold;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.2rem;
+  border-radius: 15px;
+  margin: 1rem 0;
+  display: inline-block;
+  animation: pop 0.5s ease-in-out;
 }
 
 /* Progress bar */
 #progressContainer {
-  width: 100%;
-  height: 8px;
-  background: #ddd;
-  border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 1rem;
+  background: rgba(255,255,255,0.2);
+  height: 10px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
 #progressBar {
-  width: 0%;
+  width: 0;
   height: 100%;
-  background: #1e90ff;
-  transition: width 0.3s ease;
-  border-radius: 5px;
+  background: #ffeb3b;
+  transition: width 0.3s;
+}
+
+/* Animasi */
+@keyframes pop {
+  0% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
